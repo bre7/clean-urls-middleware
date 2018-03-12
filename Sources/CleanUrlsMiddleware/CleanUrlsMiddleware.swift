@@ -2,7 +2,7 @@ import Foundation
 import Vapor
 
 /// Services files from the public folder.
-public final class PublicFilesMiddleware: Middleware, Service {
+public final class CleanUrlsMiddleware: Middleware, Service {
     /// The public directory.
     /// note: does _not_ end with a slash
     let publicDirectory: String
