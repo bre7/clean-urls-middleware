@@ -1,4 +1,4 @@
-# pretty-urls
+# CleanUrlsMiddleware
 Middleware for Vapor 3 to allow the user to request files without extension from the Public dir
 
 It's a copy-paste of the Middleware provided by Vapor called `FileMiddleware` with an added bonus: Allow users to request files without extensions.
@@ -14,9 +14,9 @@ public func configure(
 ) throws {
     // ...
     // ...
-    services.register { container -> PublicFilesMiddleware in
-        let directory = try container.make(DirectoryConfig.self, for: PublicFilesMiddleware.self)
-        return PublicFilesMiddleware(publicDirectory: directory.workDir + "Public/")
+    services.register { container -> CleanUrlsMiddleware in
+        let directory = try container.make(DirectoryConfig.self, for: CleanUrlsMiddleware.self)
+        return CleanUrlsMiddleware(publicDirectory: directory.workDir + "Public/")
     }
 
     // ...
@@ -26,7 +26,7 @@ public func configure(
     // Register middleware
     // ...
     // ...
-    middlewares.use(PublicFilesMiddleware.self) // Serves files from `Public/` directory
+    middlewares.use(CleanUrlsMiddleware.self) // Serves files from `Public/` directory
     // ...
     // ...
     services.register(middlewares)
